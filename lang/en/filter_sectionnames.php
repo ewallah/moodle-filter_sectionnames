@@ -17,10 +17,11 @@
 /**
  * Strings for component 'filter_sectionnames', language 'en', branch 'MOODLE_20_STABLE'
  *
- * @package   filter_sectionnames
+ * @package    filter_sectionnames
  * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['pluginname'] = 'Section auto-linking';
 $string['filtername'] = 'Section names auto-linking';
 $string['privacy:metadata'] = 'This plugin does not save or export user data.';

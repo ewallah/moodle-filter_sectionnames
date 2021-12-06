@@ -15,21 +15,38 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Filter post install hook
+ * Filter sectionnames privacy tests.
  *
  * @package    filter_sectionnames
- * @copyright  2017 Matt Davidson
+ * @copyright  2021
+ * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_sectionnames\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-/**
- *
- * Default will be off.
- *
- */
-function xmldb_filter_sectionnames_install() {
-     global $DB;
+use \core_privacy\tests\provider_testcase;
 
+/**
+ * Filter sectionnames privacy tests.
+ *
+ * @package    filter_sectionnames
+ * @copyright  2021
+ * @author     Renaat Debleu <info@eWallah.net>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class privacy_test extends provider_testcase {
+
+    /**
+     * Test returning metadata.
+     * @coversDefaultClass filter_iplus\privacy\provider
+     */
+    public function test_get_metadata() {
+        $privacy = new provider();
+        $reason = $privacy->get_reason();
+        $this->assertEquals($reason, 'privacy:metadata');
+        $this->assertStringContainsString('does not save', get_string($reason, 'filter_sectionnames'));
+    }
 }
