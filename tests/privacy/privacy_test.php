@@ -23,7 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace filter_sectionnames;
+namespace filter_sectionnames\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -44,7 +44,7 @@ class privacy_test extends provider_testcase {
      * @coversDefaultClass filter_iplus\privacy\provider
      */
     public function test_get_metadata() {
-        $privacy = new privacy\provider();
+        $privacy = new provider();
         $reason = $privacy->get_reason();
         $this->assertEquals($reason, 'privacy:metadata');
         $this->assertStringContainsString('does not save', get_string($reason, 'filter_sectionnames'));
