@@ -20,10 +20,7 @@
  * @copyright  2018 Matt Davidson <davidso1@rose-hulman.edu>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 namespace filter_sectionnames\privacy;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Privacy Subsystem for filter_sectionnames implementing null_provider.

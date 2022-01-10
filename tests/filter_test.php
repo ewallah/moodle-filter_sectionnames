@@ -23,10 +23,7 @@
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 namespace filter_sectionnames;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Tests for filter_data.
