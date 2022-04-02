@@ -32,7 +32,7 @@ namespace filter_sectionnames;
  * @copyright  2021
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @coversDefaultClass filter_sectionnames
+ * @coversDefaultClass \filter_sectionnames
  */
 class filter_test extends \advanced_testcase {
 
@@ -54,6 +54,7 @@ class filter_test extends \advanced_testcase {
      * Tests that the filter applies the required changes.
      *
      * @return void
+     * @covers \filter_sectionnames
      */
     public function test_filter() {
         global $DB, $PAGE;
@@ -83,6 +84,7 @@ class filter_test extends \advanced_testcase {
 
     /**
      * Test strings.
+     * @covers \filter_sectionnames
      */
     public function test_strings() {
         $this->assertNotEmpty(get_string('pluginname', 'filter_sectionnames'));
@@ -92,6 +94,7 @@ class filter_test extends \advanced_testcase {
 
     /**
      * Test plugin.
+     * @covers \filter_sectionnames
      */
     public function test_plugin() {
         $class = new \ReflectionClass('filter_sectionnames');
