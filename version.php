@@ -28,4 +28,4 @@ $plugin->version = 2019041700;
 $plugin->requires = 2016051900;
 $plugin->component = 'filter_sectionnames';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release  = '3.6.1';
+$plugin->release = '3.6.1';
