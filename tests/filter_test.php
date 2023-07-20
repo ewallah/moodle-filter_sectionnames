@@ -98,7 +98,7 @@ class filter_test extends \advanced_testcase {
      */
     public function test_plugin() {
         $class = new \ReflectionClass('filter_sectionnames');
-        $this->assertCount(4, $class->getMethods());
+        $this->assertCount(8, $class->getMethods());
         $this->assertCount(5, $class->getProperties());
     }
 }

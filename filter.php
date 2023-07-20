@@ -107,7 +107,7 @@ class filter_sectionnames extends moodle_text_filter {
             foreach ($sortedsections as $section) {
                 $title = s(trim(strip_tags($section->name)));
                 $currentname = trim($section->name);
-                $entname  = s($currentname);
+                $entname = s($currentname);
                 // Avoid empty or unlinkable activity names.
                 if (!empty($title)) {
                     $hrefopen = html_writer::start_tag('a', ['class' => 'autolink', 'title' => $title, 'href' => $section->url]);
