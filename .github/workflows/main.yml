@@ -97,7 +97,7 @@ jobs:
 
       - name: phpunit
         if: ${{ always() }}
-        run: moodle-plugin-ci --ansi phpunit --coverage-text
+        run: moodle-plugin-ci --ansi phpunit --coverage-text --coverage-clover
 
       - name: coveralls
         if: matrix.moodle-branch == 'MOODLE_402_STABLE'
