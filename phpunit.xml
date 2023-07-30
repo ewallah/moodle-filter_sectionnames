@@ -38,6 +38,7 @@
             <directory suffix=".php">.</directory>
         </include>
         <exclude>
+            <directory suffix=".php">lang</directory>
             <directory suffix="_test.php">.</directory>
             <file>version.php</file>
         </exclude>

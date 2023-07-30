@@ -45,6 +45,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           ini-values: max_input_vars=5000
+          coverage: pcov
 
       - name: composer
         run: |
