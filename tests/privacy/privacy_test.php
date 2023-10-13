@@ -24,7 +24,7 @@
  */
 namespace filter_sectionnames\privacy;
 
-use \core_privacy\tests\provider_testcase;
+use core_privacy\tests\provider_testcase;
 
 /**
  * Filter sectionnames privacy tests.
