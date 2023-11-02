@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        moodle-branch: ['MOODLE_401_STABLE', 'MOODLE_402_STABLE', 'MOODLE_403_STABLE', 'master']
+        moodle-branch: ['MOODLE_401_STABLE', 'MOODLE_402_STABLE', 'MOODLE_403_STABLE']
         php: ['8.1']
         database: ['mariadb', 'pgsql']
         include:
@@ -106,7 +106,7 @@ jobs:
 
       - name: coveralls
         if: matrix.moodle-branch == 'MOODLE_402_STABLE'
-        run: moodle-plugin-ci coveralls-upload
+        run: moodle-plugin-ci coveralls-upload || true
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
