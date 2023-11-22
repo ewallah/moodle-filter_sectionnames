@@ -24,7 +24,7 @@
  */
 namespace filter_sectionnames\privacy;
 
-use \core_privacy\tests\provider_testcase;
+use core_privacy\tests\provider_testcase;
 
 /**
  * Filter sectionnames privacy tests.
@@ -41,7 +41,7 @@ class privacy_test extends provider_testcase {
      * Test returning metadata.
      * @covers \filter_sectionnames\privacy\provider
      */
-    public function test_get_metadata() {
+    public function test_get_metadata(): void {
         $privacy = new provider();
         $reason = $privacy->get_reason();
         $this->assertEquals($reason, 'privacy:metadata');
