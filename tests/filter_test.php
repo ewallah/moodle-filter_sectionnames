@@ -42,7 +42,7 @@ class filter_test extends \advanced_testcase {
      *
      * @return void
      */
-    public function setup() : void {
+    public function setup(): void {
         $this->resetAfterTest(true);
         $this->setAdminUser();
         \filter_manager::reset_caches();
@@ -56,7 +56,7 @@ class filter_test extends \advanced_testcase {
      * @return void
      * @covers \filter_sectionnames
      */
-    public function test_filter() {
+    public function test_filter(): void {
         global $DB, $PAGE;
         $this->setAdminUser();
         $dg = $this->getDataGenerator();
@@ -86,7 +86,7 @@ class filter_test extends \advanced_testcase {
      * Test strings.
      * @covers \filter_sectionnames
      */
-    public function test_strings() {
+    public function test_strings(): void {
         $this->assertNotEmpty(get_string('pluginname', 'filter_sectionnames'));
         $this->assertNotEmpty(get_string('filtername', 'filter_sectionnames'));
         $this->assertNotEmpty(get_string('privacy:metadata', 'filter_sectionnames'));
@@ -96,7 +96,7 @@ class filter_test extends \advanced_testcase {
      * Test plugin.
      * @covers \filter_sectionnames
      */
-    public function test_plugin() {
+    public function test_plugin(): void {
         $class = new \ReflectionClass('filter_sectionnames');
         $this->assertCount(8, $class->getMethods());
         $this->assertCount(5, $class->getProperties());
