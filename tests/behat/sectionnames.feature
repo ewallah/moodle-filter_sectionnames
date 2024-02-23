@@ -34,9 +34,11 @@ Feature: Show sectionnames filter functionality
     And I edit the section "1" and I fill the form with:
       | Custom                     | 1        |
       | New value for Section name | number 1 |
+    And I am on "Course 1" course homepage
     And I edit the section "2" and I fill the form with:
       | Custom                     | 1        |
       | New value for Section name | number 2 |
+    And I am on "Course 1" course homepage
     And I edit the section "3" and I fill the form with:
       | Custom                     | 1        |
       | New value for Section name | number 3 |
