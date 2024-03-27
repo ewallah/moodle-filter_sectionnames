@@ -36,7 +36,6 @@ use core_privacy\tests\provider_testcase;
  * @coversDefaultClass \filter_sectionnames\privacy\provider
  */
 final class privacy_test extends provider_testcase {
-
     /**
      * Test returning metadata.
      * @covers \filter_sectionnames\privacy\provider

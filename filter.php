@@ -114,7 +114,7 @@ class filter_sectionnames extends moodle_text_filter {
                     self::$sectionslist[$section->id] = new filterobject($currentname, $hrefopen, '</a>', false, true);
                     if ($currentname != $entname) {
                         // If name has some entity (&amp; &quot; &lt; &gt;) add that filter too. MDL-17545.
-                        self::$sectionslist[$section->id.'-e'] = new filterobject($entname, $hrefopen, '</a>', false, true);
+                        self::$sectionslist[$section->id . '-e'] = new filterobject($entname, $hrefopen, '</a>', false, true);
                     }
                 }
             }
@@ -125,7 +125,7 @@ class filter_sectionnames extends moodle_text_filter {
             $sectionid = $this->context->instanceid;
             if ($this->context->contextlevel == CONTEXT_MODULE && isset(self::$sectionslist[$sectionid])) {
                 // Remove filterobjects for the current module.
-                $filterslist = array_values(array_diff_key(self::$sectionslist, [$sectionid => 1, $sectionid.'-e' => 1]));
+                $filterslist = array_values(array_diff_key(self::$sectionslist, [$sectionid => 1, $sectionid . '-e' => 1]));
             } else {
                 $filterslist = array_values(self::$sectionslist);
             }
