@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'filter_sectionnames';
-$plugin->version = 2024031100;
 $plugin->requires = 2023042400;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = 'v4.2.1';
 $plugin->supported = [402, 403];
+$plugin->release = 'v4.2.2';
+$plugin->version = 2024032700;

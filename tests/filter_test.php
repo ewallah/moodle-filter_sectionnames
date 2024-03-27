@@ -35,8 +35,6 @@ namespace filter_sectionnames;
  * @coversDefaultClass \filter_sectionnames
  */
 final class filter_test extends \advanced_testcase {
-
-
     /**
      * Setup.
      *
