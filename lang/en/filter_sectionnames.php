@@ -22,6 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Section auto-linking';
 $string['filtername'] = 'Section names auto-linking';
+$string['pluginname'] = 'Section auto-linking';
 $string['privacy:metadata'] = 'This plugin does not save or export user data.';
