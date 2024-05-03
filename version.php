@@ -28,5 +28,5 @@ $plugin->component = 'filter_sectionnames';
 $plugin->requires = 2023042400;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->supported = [402, 404];
-$plugin->release = 'v4.2.3';
+$plugin->release = 'v4.4.1';
 $plugin->version = 2024041300;
