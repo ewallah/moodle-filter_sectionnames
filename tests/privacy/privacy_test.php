@@ -18,7 +18,7 @@
  * Filter sectionnames privacy tests.
  *
  * @package    filter_sectionnames
- * @copyright  2021
+ * @copyright  eWallah.net (www.eWallah.net)
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,7 +30,7 @@ use core_privacy\tests\provider_testcase;
  * Filter sectionnames privacy tests.
  *
  * @package    filter_sectionnames
- * @copyright  2021
+ * @copyright  eWallah.net (www.eWallah.net)
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @coversDefaultClass \filter_sectionnames\privacy\provider
