@@ -19,7 +19,7 @@
  *
  * @package    filter_sectionnames
  * @category   test
- * @copyright  2021
+ * @copyright  eWallah.net (www.eWallah.net)
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,10 +29,9 @@ namespace filter_sectionnames;
  * Tests for filter_data.
  *
  * @package    filter_sectionnames
- * @copyright  2021
+ * @copyright  eWallah.net (www.eWallah.net)
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @coversDefaultClass \filter_sectionnames
  */
 final class filter_test extends \advanced_testcase {
     /**
