@@ -39,7 +39,10 @@ final class filter_test extends \advanced_testcase {
      *
      * @return void
      */
-    public function setup(): void {
+    public function setUp(): void {
+        global $CFG;
+        require_once($CFG->dirroot . '/filter/sectionnames/filter.php');
+        parent::setUp();
         $this->resetAfterTest(true);
         $this->setAdminUser();
         \filter_manager::reset_caches();
@@ -55,13 +58,10 @@ final class filter_test extends \advanced_testcase {
      */
     public function test_filter(): void {
         global $DB, $PAGE;
-        $this->setAdminUser();
         $dg = $this->getDataGenerator();
         $course = $dg->create_course(['numsections' => 5], ['createsections' => true]);
-        $user = $dg->create_user();
-        $dg->enrol_user($user->id, $course->id);
         $coursesections = $DB->get_records('course_sections', ['course' => $course->id]);
-        $customname = "Custom Section";
+        $customname = "Custom Section &";
         foreach ($coursesections as $section) {
             $section->name = "$customname $section->section";
             $DB->update_record('course_sections', $section);
@@ -77,6 +77,38 @@ final class filter_test extends \advanced_testcase {
         $this->assertStringContainsString('class="autolink"', format_text("$customname 4", FORMAT_HTML));
         $this->assertStringContainsString('class="autolink"', format_text("$customname 5", FORMAT_HTML));
         $this->assertStringNotContainsString('class="autolink"', format_text("$customname 6", FORMAT_HTML));
+    }
+
+    /**
+     * Tests that the filter works in all contexts.
+     *
+     * @return void
+     * @covers \filter_sectionnames
+     */
+    public function test_all_context(): void {
+        global $DB;
+        $dg = $this->getDataGenerator();
+        $user = $dg->create_user();
+        $course = $dg->create_course(['numsections' => 3], ['createsections' => true]);
+        $page = $dg->get_plugin_generator('mod_page')->create_instance(['course' => $course]);
+        $modinfo = get_fast_modinfo($course);
+        $cms = $modinfo->get_instances();
+        $cm = $cms['page'][$page->id];
+        $coursesections = $DB->get_records('course_sections', ['course' => $course->id]);
+        $customname = "Custom Section";
+        foreach ($coursesections as $section) {
+            $section->name = "$customname $section->section";
+            $DB->update_record('course_sections', $section);
+        }
+        $filter = new \filter_sectionnames(\context_course::instance($course->id), []);
+        $this->assertEquals('false', $filter->filter('false', []));
+        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
+        $filter = new \filter_sectionnames(\context_user::instance($user->id), []);
+        $this->assertEquals('false', $filter->filter('false', []));
+        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
+        $filter = new \filter_sectionnames(\context_module::instance($cm->id), []);
+        $this->assertEquals('false', $filter->filter('false', []));
+        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
     }
 
     /**
