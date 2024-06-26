@@ -81,11 +81,7 @@ class filter_sectionnames extends moodle_text_filter {
             // Create array of visible sections sorted by the name length (we are only interested in properties name and url).
             $sortedsections = [];
 
-            if (function_exists('course_get_format')) {
-                $formatinfo = course_get_format($courseid);
-            } else {
-                $formatinfo = format_base::instance($courseid);
-            }
+            $formatinfo = function_exists('course_get_format') ? course_get_format($courseid) : format_base::instance($courseid);
 
             $numsections = $formatinfo->get_last_section_number();
             $section = 1; // Skip the general section 0.
@@ -125,10 +121,11 @@ class filter_sectionnames extends moodle_text_filter {
             $sectionid = $this->context->instanceid;
             if ($this->context->contextlevel == CONTEXT_MODULE && isset(self::$sectionslist[$sectionid])) {
                 // Remove filterobjects for the current module.
-                $filterslist = array_values(array_diff_key(self::$sectionslist, [$sectionid => 1, $sectionid . '-e' => 1]));
+                $filterslist = array_diff_key(self::$sectionslist, [$sectionid => 1, $sectionid . '-e' => 1]);
             } else {
-                $filterslist = array_values(self::$sectionslist);
+                $filterslist = self::$sectionslist;
             }
+            $filterslist = array_values($filterslist);
         }
 
         return $filterslist ? filter_phrases($text, $filterslist) : $text;

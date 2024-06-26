@@ -33,7 +33,6 @@ use core_privacy\tests\provider_testcase;
  * @copyright  eWallah.net (www.eWallah.net)
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @coversDefaultClass \filter_sectionnames\privacy\provider
  */
 final class privacy_test extends provider_testcase {
     /**
