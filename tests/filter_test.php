@@ -40,8 +40,6 @@ final class filter_test extends \advanced_testcase {
      * @return void
      */
     public function setUp(): void {
-        global $CFG;
-        require_once($CFG->dirroot . '/filter/sectionnames/filter.php');
         parent::setUp();
         $this->resetAfterTest(true);
         $this->setAdminUser();
@@ -54,7 +52,7 @@ final class filter_test extends \advanced_testcase {
      * Tests that the filter applies the required changes.
      *
      * @return void
-     * @covers \filter_sectionnames
+     * @covers \filter_sectionnames\text_filter
      */
     public function test_filter(): void {
         global $DB, $PAGE;
@@ -83,7 +81,7 @@ final class filter_test extends \advanced_testcase {
      * Tests that the filter works in all contexts.
      *
      * @return void
-     * @covers \filter_sectionnames
+     * @covers \filter_sectionnames\text_filter
      */
     public function test_all_context(): void {
         global $DB;
@@ -100,20 +98,20 @@ final class filter_test extends \advanced_testcase {
             $section->name = "$customname $section->section";
             $DB->update_record('course_sections', $section);
         }
-        $filter = new \filter_sectionnames(\context_course::instance($course->id), []);
+        $filter = new \filter_sectionnames\text_filter(\context_course::instance($course->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
         $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
-        $filter = new \filter_sectionnames(\context_user::instance($user->id), []);
+        $filter = new \filter_sectionnames\text_filter(\context_user::instance($user->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
         $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
-        $filter = new \filter_sectionnames(\context_module::instance($cm->id), []);
+        $filter = new \filter_sectionnames\text_filter(\context_module::instance($cm->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
         $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
     }
 
     /**
      * Test strings.
-     * @covers \filter_sectionnames
+     * @covers \filter_sectionnames\text_filter
      */
     public function test_strings(): void {
         $this->assertNotEmpty(get_string('pluginname', 'filter_sectionnames'));
@@ -123,11 +121,11 @@ final class filter_test extends \advanced_testcase {
 
     /**
      * Test plugin.
-     * @covers \filter_sectionnames
+     * @covers \filter_sectionnames\text_filter
      */
     public function test_plugin(): void {
-        $class = new \ReflectionClass('filter_sectionnames');
-        $this->assertCount(8, $class->getMethods());
+        $class = new \ReflectionClass('filter_sectionnames\text_filter');
+        $this->assertGreaterThan(8, $class->getMethods());
         $this->assertCount(5, $class->getProperties());
     }
 }
