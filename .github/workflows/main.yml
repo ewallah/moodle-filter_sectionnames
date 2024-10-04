@@ -30,13 +30,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        moodle-branch: ['MOODLE_402_STABLE', 'MOODLE_403_STABLE', 'MOODLE_404_STABLE']
-        php: ['8.2']
+        moodle-branch: ['MOODLE_404_STABLE']
+        php: ['8.2', '8.3']
         database: ['mariadb', 'pgsql']
-        include:
-          - php: '8.2'
-            moodle-branch: 'main'
-            database: 'pgsql'
 
     steps:
       - name: checkout plugin
@@ -101,7 +97,6 @@ jobs:
         run: moodle-plugin-ci --ansi phpunit --testdox --coverage-text --coverage-clover
 
       - name: coveralls
-        if: matrix.moodle-branch == 'MOODLE_402_STABLE'
         run: moodle-plugin-ci coveralls-upload || true
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
