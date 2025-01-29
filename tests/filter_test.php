@@ -54,7 +54,7 @@ final class filter_test extends \advanced_testcase {
      * Tests that the filter applies the required changes.
      *
      * @return void
-     * @covers \filter_sectionnames
+     * #[CoversClass(filter_sectionnames)]
      */
     public function test_filter(): void {
         global $DB, $PAGE;
@@ -83,7 +83,7 @@ final class filter_test extends \advanced_testcase {
      * Tests that the filter works in all contexts.
      *
      * @return void
-     * @covers \filter_sectionnames
+     * #[CoversClass(filter_sectionnames)]
      */
     public function test_all_context(): void {
         global $DB;
@@ -113,7 +113,7 @@ final class filter_test extends \advanced_testcase {
 
     /**
      * Test strings.
-     * @covers \filter_sectionnames
+     * #[CoversClass(filter_sectionnames)]
      */
     public function test_strings(): void {
         $this->assertNotEmpty(get_string('pluginname', 'filter_sectionnames'));
@@ -123,7 +123,7 @@ final class filter_test extends \advanced_testcase {
 
     /**
      * Test plugin.
-     * @covers \filter_sectionnames
+     * #[CoversClass(filter_sectionnames)]
      */
     public function test_plugin(): void {
         $class = new \ReflectionClass('filter_sectionnames');
