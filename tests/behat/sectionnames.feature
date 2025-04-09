@@ -1,6 +1,6 @@
 @filter @filter_sectionnames
 Feature: Show sectionnames filter functionality
-  To write rich text - I need to render sectionnames in content.
+  To write rich text, I need to render sectionnames in content.
 
   Background:
     Given the following "courses" exist:
