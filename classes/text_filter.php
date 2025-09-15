@@ -38,8 +38,8 @@ use filterobject;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class text_filter extends \core_filters\text_filter {
-
     // Trivial-cache - keyed on $cachedcourseid and $cacheduserid.
+
     /** @var array section list. */
     public static $sectionslist = null;
 

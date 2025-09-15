@@ -32,38 +32,8 @@ Feature: Show sectionnames filter functionality
     And I log in as "admin"
     And I am on "Course 1" course homepage with editing mode on
 
-  Scenario: Check if the automatic section links were created.
-    Given the site is running Moodle version 4.3 or lower
-    And I edit the section "1" and I fill the form with:
-      | Custom                     | 1        |
-      | New value for Section name | number 1 |
-    And I am on "Course 1" course homepage
-    And I edit the section "2" and I fill the form with:
-      | Custom                     | 1        |
-      | New value for Section name | number 2 |
-    And I am on "Course 1" course homepage
-    And I edit the section "3" and I fill the form with:
-      | Custom                     | 1        |
-      | New value for Section name | number 3 |
-    And I log out
-    Given I log in as "student1"
-    And I am on "Course 1" course homepage
-    Then I should not see "Topic 1"
-    And I should see "number 1"
-    And I follow "PageName1"
-    Then I should see "number 1"
-    And I follow "number 1"
-    And I follow "PageName2"
-    Then I should see "number 1"
-    And I follow "number 1"
-    Then I should see "number 1"
-    And I follow "PageName2"
-    And I follow "number 1"
-    Then I should see "PageName1"
-
   Scenario: Check if the automatic section links were created in 4.4
-    Given the site is running Moodle version 4.4 or higher
-    When I edit the section "1" and I fill the form with:
+    Given I edit the section "1" and I fill the form with:
       | Section name | number 1 |
     And I am on "Course 1" course homepage
     And I edit the section "2" and I fill the form with:

@@ -25,6 +25,7 @@
 namespace filter_sectionnames\privacy;
 
 use core_privacy\tests\provider_testcase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Filter sectionnames privacy tests.
@@ -34,10 +35,10 @@ use core_privacy\tests\provider_testcase;
  * @author     Renaat Debleu <info@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+#[CoversClass(provider::class)]
 final class privacy_test extends provider_testcase {
     /**
      * Test returning metadata.
-     * @covers \filter_sectionnames\privacy\provider
      */
     public function test_get_metadata(): void {
         $privacy = new provider();

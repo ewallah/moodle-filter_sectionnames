@@ -31,15 +31,14 @@ jobs:
       fail-fast: false
       matrix:
         moodle-branch: ['main']
-        php: ['8.2', '8.3']
+        php: ['8.3', '8.4']
         database: ['mariadb', 'pgsql']
 
     steps:
       - name: checkout plugin
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: this-plugin
-          ref: 'MOODLE_405_STABLE'
 
       - name: setup PHP
         uses: shivammathur/setup-php@v2
