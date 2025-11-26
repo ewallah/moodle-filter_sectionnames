@@ -39,8 +39,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 final class filter_test extends \advanced_testcase {
     /**
      * Setup.
-     *
-     * @return void
      */
     public function setUp(): void {
         parent::setUp();
@@ -53,8 +51,6 @@ final class filter_test extends \advanced_testcase {
 
     /**
      * Tests that the filter applies the required changes.
-     *
-     * @return void
      */
     public function test_filter(): void {
         global $DB, $PAGE;
@@ -63,26 +59,25 @@ final class filter_test extends \advanced_testcase {
         $coursesections = $DB->get_records('course_sections', ['course' => $course->id]);
         $customname = "Custom Section &";
         foreach ($coursesections as $section) {
-            $section->name = "$customname $section->section";
+            $section->name = "{$customname} $section->section";
             $DB->update_record('course_sections', $section);
         }
+
         $PAGE->set_course($course);
         $PAGE->set_url(course_get_url($course->id));
         $PAGE->set_context(\context_course::instance($course->id));
 
         $this->assertEquals(false, format_text(false, FORMAT_HTML));
-        $this->assertStringContainsString('class="autolink"', format_text("$customname 1", FORMAT_HTML));
-        $this->assertStringContainsString('class="autolink"', format_text("$customname 2", FORMAT_HTML));
-        $this->assertStringContainsString('class="autolink"', format_text("$customname 3", FORMAT_HTML));
-        $this->assertStringContainsString('class="autolink"', format_text("$customname 4", FORMAT_HTML));
-        $this->assertStringContainsString('class="autolink"', format_text("$customname 5", FORMAT_HTML));
-        $this->assertStringNotContainsString('class="autolink"', format_text("$customname 6", FORMAT_HTML));
+        $this->assertStringContainsString('class="autolink"', format_text("{$customname} 1", FORMAT_HTML));
+        $this->assertStringContainsString('class="autolink"', format_text("{$customname} 2", FORMAT_HTML));
+        $this->assertStringContainsString('class="autolink"', format_text("{$customname} 3", FORMAT_HTML));
+        $this->assertStringContainsString('class="autolink"', format_text("{$customname} 4", FORMAT_HTML));
+        $this->assertStringContainsString('class="autolink"', format_text("{$customname} 5", FORMAT_HTML));
+        $this->assertStringNotContainsString('class="autolink"', format_text("{$customname} 6", FORMAT_HTML));
     }
 
     /**
      * Tests that the filter works in all contexts.
-     *
-     * @return void
      */
     public function test_all_context(): void {
         global $DB;
@@ -96,18 +91,19 @@ final class filter_test extends \advanced_testcase {
         $coursesections = $DB->get_records('course_sections', ['course' => $course->id]);
         $customname = "Custom Section";
         foreach ($coursesections as $section) {
-            $section->name = "$customname $section->section";
+            $section->name = "{$customname} $section->section";
             $DB->update_record('course_sections', $section);
         }
+
         $filter = new \filter_sectionnames\text_filter(\context_course::instance($course->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
-        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
+        $this->assertEquals("{$customname} 1", $filter->filter("{$customname} 1", []));
         $filter = new \filter_sectionnames\text_filter(\context_user::instance($user->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
-        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
+        $this->assertEquals("{$customname} 1", $filter->filter("{$customname} 1", []));
         $filter = new \filter_sectionnames\text_filter(\context_module::instance($cm->id), []);
         $this->assertEquals('false', $filter->filter('false', []));
-        $this->assertEquals("$customname 1", $filter->filter("$customname 1", []));
+        $this->assertEquals("{$customname} 1", $filter->filter("{$customname} 1", []));
     }
 
     /**

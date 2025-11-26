@@ -41,7 +41,7 @@ class text_filter extends \core_filters\text_filter {
     // Trivial-cache - keyed on $cachedcourseid and $cacheduserid.
 
     /** @var array section list. */
-    public static $sectionslist = null;
+    public static $sectionslist;
 
     /** @var int course id. */
     public static $cachedcourseid;
@@ -66,17 +66,20 @@ class text_filter extends \core_filters\text_filter {
         if (!$coursectx) {
             return $text;
         }
+
         $courseid = $coursectx->instanceid;
 
         // Initialise/invalidate our trivial cache if dealing with a different course.
         if (!isset(self::$cachedcourseid) || self::$cachedcourseid !== (int)$courseid) {
             self::$sectionslist = null;
         }
+
         self::$cachedcourseid = (int)$courseid;
         // And the same for user id.
         if (!isset(self::$cacheduserid) || self::$cacheduserid !== (int)$USER->id) {
             self::$sectionslist = null;
         }
+
         self::$cacheduserid = (int)$USER->id;
 
         // It may be cached.
@@ -100,6 +103,7 @@ class text_filter extends \core_filters\text_filter {
                         'namelen' => -strlen(get_section_name($courseid, $section)), // Negative value for reverse sorting.
                     ];
                 }
+
                 $section++;
             }
 
@@ -107,8 +111,8 @@ class text_filter extends \core_filters\text_filter {
             core_collator::asort_objects_by_property($sortedsections, 'namelen', core_collator::SORT_NUMERIC);
 
             foreach ($sortedsections as $section) {
-                $title = s(trim(strip_tags($section->name)));
-                $currentname = trim($section->name);
+                $title = s(trim(strip_tags((string) $section->name)));
+                $currentname = trim((string) $section->name);
                 $entname = s($currentname);
                 // Avoid empty or unlinkable activity names.
                 if (!empty($title)) {
@@ -131,9 +135,10 @@ class text_filter extends \core_filters\text_filter {
             } else {
                 $filterslist = self::$sectionslist;
             }
+
             $filterslist = array_values($filterslist);
         }
 
-        return $filterslist ? filter_phrases($text, $filterslist) : $text;
+        return $filterslist !== [] ? filter_phrases($text, $filterslist) : $text;
     }
 }
