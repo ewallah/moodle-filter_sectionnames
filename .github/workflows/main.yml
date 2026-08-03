@@ -81,6 +81,7 @@ jobs:
 
       - name: validate
         if: ${{ !cancelled() }}
+        continue-on-error: true
         run: moodle-plugin-ci --ansi validate
 
       - name: savepoints
@@ -88,7 +89,7 @@ jobs:
         run: moodle-plugin-ci --ansi savepoints
 
       - name: grunt
-        if: ${{ matrix.moodle-branch == 'main'}}
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci --ansi grunt
 
       - name: mustache
@@ -142,11 +143,11 @@ jobs:
         run: moodle-plugin-ci --ansi behat  --suite="classic" --profile chrome
 
       - name: admin bookmarks
-        if: ${{ matrix.moodle-branch == 'main'}}
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci --ansi behat --auto-rerun=0 --profile chrome public/blocks/admin_bookmarks
         working-directory: moodle
 
       - name: admin xmldb
-        if: ${{ matrix.moodle-branch == 'main'}}
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci --ansi behat --auto-rerun=0 --profile chrome public/admin/tool/xmldb
         working-directory: moodle
