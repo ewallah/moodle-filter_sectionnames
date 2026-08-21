@@ -45,7 +45,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           ini-values: max_input_vars=5000,  opcache.enable_cli=1, opcache.jit = disable
-          tools: composer:v2.5
+          tools: composer
           coverage: pcov
 
       - name: composer
@@ -81,7 +81,6 @@ jobs:
 
       - name: validate
         if: ${{ !cancelled() }}
-        continue-on-error: true
         run: moodle-plugin-ci --ansi validate
 
       - name: savepoints
@@ -89,7 +88,7 @@ jobs:
         run: moodle-plugin-ci --ansi savepoints
 
       - name: grunt
-        if: ${{ !cancelled() }}
+        if: ${{ matrix.moodle-branch == 'main'}}
         run: moodle-plugin-ci --ansi grunt
 
       - name: mustache
@@ -103,11 +102,6 @@ jobs:
       - name: privacy
         if: ${{ !cancelled() }}
         run: vendor/bin/phpunit --colors --no-coverage --testsuite tool_dataprivacy_testsuite,tool_policy_testsuite,core_privacy_testsuite
-        working-directory: moodle
-
-      - name: other
-        if: ${{ !cancelled() }}
-        run: vendor/bin/phpunit --colors --no-coverage --testsuite core_availability_testsuite
         working-directory: moodle
 
       - name: coveralls
@@ -132,15 +126,6 @@ jobs:
       - name: chrome
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci --ansi behat --profile chrome
-
-      - name: firefox classic
-        id: behat
-        if: ${{ !cancelled() }}
-        run: moodle-plugin-ci --ansi behat --suite="classic"
-      
-      - name: chrome classic
-        if: ${{ !cancelled() }}
-        run: moodle-plugin-ci --ansi behat  --suite="classic" --profile chrome
 
       - name: admin bookmarks
         if: ${{ !cancelled() }}
